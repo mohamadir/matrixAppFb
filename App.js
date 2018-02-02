@@ -42,12 +42,13 @@ export default class App extends Component {
     });
   }
   render() {
+    console.log("hihihihi")
     return (
       <View style={styles.container}>
-         <Text>{this.state.user}</Text>
-        <TouchableOpacity onPress={this.facebookLogin}>
+         <Text style={{fontSize:20}}>{this.state.user}</Text>
+        {/* <TouchableOpacity onPress={this.facebookLogin}>
           <Text> login facebook</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         <LoginButton
     onLoginFinished={
       (error, result) => {
@@ -68,8 +69,9 @@ export default class App extends Component {
                   alert('Error fetching data: ' + error.toString());
                 } else {
                   console.log(result)
+                  this.setState({user: result.first_name +" "+ result.last_name})
                   alert('Success fetching data: ' + result.toString());
-                  this.setState({user:Json.stringify(result.data)})
+                  console.log("successsssssssssss")
                 }
               }
 
