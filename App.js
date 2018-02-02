@@ -11,6 +11,7 @@ import {
   StyleSheet,
   Text,
   View,
+  Image,
   TouchableOpacity
 } from 'react-native';
 import FBSDK,{LoginManager,GraphRequest,GraphRequestManager,LoginButton,AccessToken} from 'react-native-fbsdk';
@@ -28,7 +29,8 @@ export default class App extends Component {
     super(props)
     
     this.state = {
-       user: ''
+       user: 'Stranger',
+       picUrl:'http://walyou.com/wp-content/uploads//2010/12/facebook-profile-picture-no-pic-avatar.jpg'
     }
   }
   
@@ -45,7 +47,11 @@ export default class App extends Component {
     console.log("hihihihi")
     return (
       <View style={styles.container}>
-         <Text style={{fontSize:20}}>{this.state.user}</Text>
+         <Text style={{fontSize:20}}>Hello {this.state.user}</Text>
+         <Image   
+            style={styles.image}                  
+            source={{uri: this.state.picUrl}}
+          /> 
         {/* <TouchableOpacity onPress={this.facebookLogin}>
           <Text> login facebook</Text>
         </TouchableOpacity> */}
@@ -53,15 +59,15 @@ export default class App extends Component {
     onLoginFinished={
       (error, result) => {
         if (error) {
-          alert("login has error: " + result.error);
+         // alert("login has error: " + result.error);
         } else if (result.isCancelled) {
-          alert("login is cancelled.");
+      //    alert("login is cancelled.");
         } else {
 
           AccessToken.getCurrentAccessToken().then(
             (data) => {
               let accessToken = data.accessToken
-              alert(accessToken.toString())
+             // alert(accessToken.toString())
 
               const responseInfoCallback = (error, result) => {
                 if (error) {
@@ -69,8 +75,8 @@ export default class App extends Component {
                   alert('Error fetching data: ' + error.toString());
                 } else {
                   console.log(result)
-                  this.setState({user: result.first_name +" "+ result.last_name})
-                  alert('Success fetching data: ' + result.toString());
+                  this.setState({user: result.first_name +" "+ result.last_name,picUrl: result.picture.data.url})
+               //   alert('Success fetching data: ' + result.toString());
                   console.log("successsssssssssss")
                 }
               }
@@ -81,7 +87,7 @@ export default class App extends Component {
                   accessToken: accessToken,
                   parameters: {
                     fields: {
-                      string: 'email,name,first_name,middle_name,last_name'
+                      string: 'email,name,first_name,middle_name,last_name,picture'
                     }
                   }
                 },
@@ -97,7 +103,7 @@ export default class App extends Component {
         }
       }
     }
-    onLogoutFinished={() => alert("logout.")}/>
+    onLogoutFinished={() => this.setState({user:'Stranger',picUrl:'http://walyou.com/wp-content/uploads//2010/12/facebook-profile-picture-no-pic-avatar.jpg'})}/>
       </View>
     );
   }
@@ -114,6 +120,13 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: 'center',
     margin: 10,
+  },
+  image: {
+    height: 100,
+    borderRadius: 50,
+    width: 100,
+    marginBottom: 60,
+    alignItems: 'center'
   },
   instructions: {
     textAlign: 'center',
