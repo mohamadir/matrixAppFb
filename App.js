@@ -32,7 +32,6 @@ export default class App extends Component {
   
  
   render() {
-    console.log("hihihihi")
     return (
       <View style={styles.container}>
          <View style={styles.profileContainer}>
@@ -66,7 +65,6 @@ export default class App extends Component {
                   this.setState({user: result.first_name +" "+ result.last_name,picUrl: result.picture.data.url})
                //   alert('Success fetching data: ' + result.toString());
                   this.setState({loggedIn:true})
-                  console.log("successsssssssssss")
                 }
               }
 
