@@ -1,4 +1,4 @@
-# Matrix examp facebook login app with react native
+# Matrix exam facebook login app with react native
  This is simple app you can sign in with facebook and see your profile details .
 
 ## Installation
