@@ -5,6 +5,7 @@
  */
 
 import React, { Component } from 'react';
+
 import {
   Platform,
   StyleSheet,
@@ -12,7 +13,7 @@ import {
   View,
   TouchableOpacity
 } from 'react-native';
-import FBSDK,{LoginManager} from 'react-native-fbsdk';
+import FBSDK,{LoginManager,GraphRequest,GraphRequestManager,LoginButton,AccessToken} from 'react-native-fbsdk';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
@@ -23,23 +24,78 @@ const instructions = Platform.select({
 
 export default class App extends Component {
 
+  constructor(props) {
+    super(props)
+    
+    this.state = {
+       user: ''
+    }
+  }
+  
   facebookLogin = ()=>{
-    alert('hi')
-    LoginManager.logInWithReadPermissions(['public_profile']).then(function(result){
-        if(result.isCancelled)
-          console.log('canceled')
-        else
-          console.log('success');
-    },function(error){
-      console.log("error "+error)
+    LoginManager.logInWithReadPermissions(['public_profile']).then((result)=>{
+      alert('success')
+
+    },(error)=>{
+      alert(JSON.stringify(error))
+      
     });
   }
   render() {
     return (
       <View style={styles.container}>
+         <Text>{this.state.user}</Text>
         <TouchableOpacity onPress={this.facebookLogin}>
           <Text> login facebook</Text>
         </TouchableOpacity>
+        <LoginButton
+    onLoginFinished={
+      (error, result) => {
+        if (error) {
+          alert("login has error: " + result.error);
+        } else if (result.isCancelled) {
+          alert("login is cancelled.");
+        } else {
+
+          AccessToken.getCurrentAccessToken().then(
+            (data) => {
+              let accessToken = data.accessToken
+              alert(accessToken.toString())
+
+              const responseInfoCallback = (error, result) => {
+                if (error) {
+                  console.log(error)
+                  alert('Error fetching data: ' + error.toString());
+                } else {
+                  console.log(result)
+                  alert('Success fetching data: ' + result.toString());
+                  this.setState({user:Json.stringify(result.data)})
+                }
+              }
+
+              const infoRequest = new GraphRequest(
+                '/me',
+                {
+                  accessToken: accessToken,
+                  parameters: {
+                    fields: {
+                      string: 'email,name,first_name,middle_name,last_name'
+                    }
+                  }
+                },
+                responseInfoCallback
+              );
+
+              // Start the graph request.
+              new GraphRequestManager().addRequest(infoRequest).start()
+
+            }
+          )
+
+        }
+      }
+    }
+    onLogoutFinished={() => alert("logout.")}/>
       </View>
     );
   }
