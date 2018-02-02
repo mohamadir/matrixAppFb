@@ -16,12 +16,7 @@ import {
 } from 'react-native';
 import FBSDK,{LoginManager,GraphRequest,GraphRequestManager,LoginButton,AccessToken} from 'react-native-fbsdk';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+
 
 export default class App extends Component {
 
@@ -34,27 +29,17 @@ export default class App extends Component {
     }
   }
   
-  facebookLogin = ()=>{
-    LoginManager.logInWithReadPermissions(['public_profile']).then((result)=>{
-      alert('success')
-
-    },(error)=>{
-      alert(JSON.stringify(error))
-      
-    });
-  }
+ 
   render() {
     console.log("hihihihi")
     return (
       <View style={styles.container}>
-         <Text style={{fontSize:20}}>Hello {this.state.user}</Text>
+         <Text style={{fontSize:20,marginBottom: 5}}>Hello {this.state.user}</Text>
          <Image   
             style={styles.image}                  
             source={{uri: this.state.picUrl}}
           /> 
-        {/* <TouchableOpacity onPress={this.facebookLogin}>
-          <Text> login facebook</Text>
-        </TouchableOpacity> */}
+ 
         <LoginButton
     onLoginFinished={
       (error, result) => {
