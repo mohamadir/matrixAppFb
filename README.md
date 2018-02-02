@@ -10,15 +10,18 @@ git clone git@github.com:mohamadir/matrixAppFb.git
 
 ### 2. go to project directory
 ```ruby
-ce matrixAppFb
+cd matrixAppFb
 ```
 
 ### 3. install packages
 ```ruby
 npm install
 ```
+### 4. connect device
 
-### 4. install packages
+connect android device / open an emulator 
+
+### 5. run the app
 ```ruby
 react-native run-android
 ```
