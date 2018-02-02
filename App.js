@@ -25,6 +25,7 @@ export default class App extends Component {
     
     this.state = {
        user: 'Stranger',
+       loggedIn: false,
        picUrl:'http://walyou.com/wp-content/uploads//2010/12/facebook-profile-picture-no-pic-avatar.jpg'
     }
   }
@@ -34,12 +35,14 @@ export default class App extends Component {
     console.log("hihihihi")
     return (
       <View style={styles.container}>
-         <Text style={{fontSize:20,marginBottom: 5}}>Hello {this.state.user}</Text>
+         <View style={styles.profileContainer}>
+         <Text style={{fontSize:30,marginBottom: '10%'}}>Hello {this.state.user}</Text>
          <Image   
             style={styles.image}                  
             source={{uri: this.state.picUrl}}
           /> 
- 
+         {!this.state.loggedIn&&<Text style={{fontSize:10,marginBottom: 5}}>Please logg in to see the awesomness</Text> }
+        </View>
         <LoginButton
     onLoginFinished={
       (error, result) => {
@@ -62,6 +65,7 @@ export default class App extends Component {
                   console.log(result)
                   this.setState({user: result.first_name +" "+ result.last_name,picUrl: result.picture.data.url})
                //   alert('Success fetching data: ' + result.toString());
+                  this.setState({loggedIn:true})
                   console.log("successsssssssssss")
                 }
               }
@@ -88,7 +92,7 @@ export default class App extends Component {
         }
       }
     }
-    onLogoutFinished={() => this.setState({user:'Stranger',picUrl:'http://walyou.com/wp-content/uploads//2010/12/facebook-profile-picture-no-pic-avatar.jpg'})}/>
+    onLogoutFinished={() => this.setState({user:'Stranger',picUrl:'http://walyou.com/wp-content/uploads//2010/12/facebook-profile-picture-no-pic-avatar.jpg',loggedIn:false})}/>
       </View>
     );
   }
@@ -101,6 +105,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
+  profileContainer:{
+    marginBottom: '50%',
+    flexDirection: 'column',
+    alignItems:   'center'
+  },
   welcome: {
     fontSize: 20,
     textAlign: 'center',
@@ -110,7 +119,7 @@ const styles = StyleSheet.create({
     height: 100,
     borderRadius: 50,
     width: 100,
-    marginBottom: 60,
+    marginBottom: '10%',    
     alignItems: 'center'
   },
   instructions: {
