@@ -26,20 +26,33 @@ export default class App extends Component {
     this.state = {
        user: 'Stranger',
        loggedIn: false,
+       googleLogged: false,
        picUrl:'http://walyou.com/wp-content/uploads//2010/12/facebook-profile-picture-no-pic-avatar.jpg'
     }
   }
   
   googleLogin=()=>{
-    console.log('hi')
-      GoogleSignin.configure().then(()=>{
+    if(this.state.googleLogged)
+    {
+      GoogleSignin.signOut()
+      .then(() => {
+        console.log('out');
+        this.setState({googleLogged: false,user:'Stranger',picUrl:'http://walyou.com/wp-content/uploads//2010/12/facebook-profile-picture-no-pic-avatar.jpg',loggedIn:false})
+       })
+      .catch((err) => {
+      });
+    }
+    else{
+    GoogleSignin.configure().then(()=>{
         GoogleSignin.signIn().then((user)=>{
           console.log(user)
-          this.setState({picUrl: user.photo,user: user.givenName + " "+user.familyName})
+
+          this.setState({googleLogged:true, picUrl: user.photo,user: user.givenName + " "+user.familyName,loggedIn:true})
         }).catch((error)=>{
           console.log(error)
         }).done();
       })
+    }
   }
  
   render() {
