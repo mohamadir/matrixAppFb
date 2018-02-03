@@ -1,5 +1,5 @@
-# Facebook login app with react native
- This is simple app you can sign in with facebook and see your profile details .
+# Facebook and Google login app with react native
+ This is simple app you can sign in with facebook or google  and see your profile details .
 
 ## Installation
   
