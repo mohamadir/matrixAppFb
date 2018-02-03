@@ -1,0 +1,131 @@
+{
+  "project_info": {
+    "project_number": "481327761870",
+    "firebase_url": "https://matrixapp2-194107.firebaseio.com",
+    "project_id": "matrixapp2-194107",
+    "storage_bucket": "matrixapp2-194107.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:481327761870:android:36b7c0d9e4b9fbb5",
+        "android_client_info": {
+          "package_name": "com.MatrixApp2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "481327761870-6kjqocehrljftdrgok345jd7ng880kd5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.MatrixApp2",
+            "certificate_hash": "103120aa5b22adea6646353ed32fa95cb184d86b"
+          }
+        },
+        {
+          "client_id": "481327761870-deud668cipmko8b85j7c5mjvvpn67as3.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "481327761870-lb3lt3o0dmuc5kv1ffh89o6nq9o0fvks.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "481327761870-h8ob61ahcarbdtspikd3vfakumdnm0pk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.MatrixApp2",
+            "certificate_hash": "570790fefd028d3158835c8441aa1821c01bc352"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDSygQgmXycih8ml3aaF20Q34O6yhOO2ec"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "481327761870-deud668cipmko8b85j7c5mjvvpn67as3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:481327761870:android:4dadf78a5911ebcc",
+        "android_client_info": {
+          "package_name": "com.matrixapp2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "481327761870-5vt6ojf39hc0cuegr8kuauvhombgms14.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.matrixapp2",
+            "certificate_hash": "103120aa5b22adea6646353ed32fa95cb184d86b"
+          }
+        },
+        {
+          "client_id": "481327761870-cusj7vkm94018fb9or40orkbpuim01an.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.matrixapp2",
+            "certificate_hash": "fffce12c3cde259a5fe2a4bd7516afbca90bb993"
+          }
+        },
+        {
+          "client_id": "481327761870-co2f5qs6tjaqnft9f1f3uufklvrjspb3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.matrixapp2",
+            "certificate_hash": "570790fefd028d3158835c8441aa1821c01bc352"
+          }
+        },
+        {
+          "client_id": "481327761870-deud668cipmko8b85j7c5mjvvpn67as3.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "481327761870-lb3lt3o0dmuc5kv1ffh89o6nq9o0fvks.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDSygQgmXycih8ml3aaF20Q34O6yhOO2ec"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "481327761870-deud668cipmko8b85j7c5mjvvpn67as3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

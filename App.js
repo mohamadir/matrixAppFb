@@ -5,7 +5,7 @@
  */
 
 import React, { Component } from 'react';
-
+import {GoogleSignIn, GoogleSignInButton, GoogleSignin} from 'react-native-google-signin';
 import {
   Platform,
   StyleSheet,
@@ -30,18 +30,30 @@ export default class App extends Component {
     }
   }
   
+  googleLogin=()=>{
+    console.log('hi')
+      GoogleSignin.configure().then(()=>{
+        GoogleSignin.signIn().then((user)=>{
+          console.log(user)
+          this.setState({picUrl: user.photo,user: user.givenName + " "+user.familyName})
+        }).catch((error)=>{
+          console.log(error)
+        }).done();
+      })
+  }
  
   render() {
     return (
       <View style={styles.container}>
          <View style={styles.profileContainer}>
-         <Text style={{fontSize:30,marginBottom: '10%'}}>Hello {this.state.user}</Text>
+         <Text style={{fontSize:20,marginBottom: '10%',marginTop: '10%'}}>Welcome {this.state.user}</Text>
          <Image   
             style={styles.image}                  
             source={{uri: this.state.picUrl}}
           /> 
-         {!this.state.loggedIn&&<Text style={{fontSize:10,marginBottom: 5}}>Please logg in to see the awesomness</Text> }
+         {!this.state.loggedIn&&<Text style={{fontSize:13,marginBottom: 5}}>Please logg in to see the awesomness</Text> }
         </View>
+        <View style={styles.socialButtons}>
         <LoginButton
     onLoginFinished={
       (error, result) => {
@@ -91,6 +103,13 @@ export default class App extends Component {
       }
     }
     onLogoutFinished={() => this.setState({user:'Stranger',picUrl:'http://walyou.com/wp-content/uploads//2010/12/facebook-profile-picture-no-pic-avatar.jpg',loggedIn:false})}/>
+      <TouchableOpacity onPress={this.googleLogin} style={styles.googleLogin}>
+        <Text style={{textAlign:'center',height:'100%',flex: 1,marginTop: 5,color: 'white'}}> 
+           Google+
+        </Text>
+      </TouchableOpacity>
+    
+      </View>
       </View>
     );
   }
@@ -114,12 +133,26 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   image: {
-    height: 100,
-    borderRadius: 50,
-    width: 100,
+    height: 150,
+    borderRadius: 100,
+    width: 150,
     marginBottom: '10%',    
     alignItems: 'center'
   },
+  socialButtons:{
+    flex: 1,
+    width: '100%',
+    justifyContent: 'space-around',
+    flexDirection: 'row'
+  },
+  googleLogin:{
+      width: 150,
+      height: 35,
+      borderRadius: 10,
+      backgroundColor: 'red'
+
+  },
+
   instructions: {
     textAlign: 'center',
     color: '#333333',

@@ -139,9 +139,13 @@ android {
 
 dependencies {
     compile project(':react-native-fbsdk')
+    compile project(':react-native-google-signin')
+    /*   compile(project(':react-native-google-signin')) { // ADD this
+      exclude group: "com.google.android.gms"
+    }  */
     compile fileTree(dir: "libs", include: ["*.jar"])
     compile "com.android.support:appcompat-v7:23.0.1"
-      compile 'com.android.support:multidex:1.0.1'
+     compile 'com.android.support:multidex:1.0.1'
     compile "com.facebook.react:react-native:+"  // From node_modules
 
 
@@ -153,3 +157,4 @@ task copyDownloadableDepsToLibs(type: Copy) {
     from configurations.compile
     into 'libs'
 }
+
