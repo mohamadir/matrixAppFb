@@ -121,8 +121,10 @@ export default class App extends Component {
       }
     }
     onLogoutFinished={() => this.setState({user:'Stranger',picUrl:'http://walyou.com/wp-content/uploads//2010/12/facebook-profile-picture-no-pic-avatar.jpg',loggedIn:false})}/>
+    
+    {/* Google login button  */}
       <TouchableOpacity onPress={this.googleLogin} style={styles.googleLogin}>
-        <Text style={{textAlign:'center',height:'100%',flex: 1,marginTop: 5,color: 'white'}}> 
+        <Text style={{textAlign:'center',height:'100%',flex: 1,marginTop: 5,color: 'white',fontWeight: 'bold'}}> 
            Google+ {this.state.googleLogged? "התנתק מ": "התחבר באמצעות"}
         </Text>
       </TouchableOpacity>
