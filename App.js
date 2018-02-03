@@ -22,7 +22,7 @@ export default class App extends Component {
 
   constructor(props) {
     super(props)
-    
+    // set the state variables 
     this.state = {
        user: 'Stranger',
        loggedIn: false,
@@ -30,7 +30,8 @@ export default class App extends Component {
        picUrl:'http://walyou.com/wp-content/uploads//2010/12/facebook-profile-picture-no-pic-avatar.jpg'
     }
   }
-  
+  // google login method , check if the user is logged in -> then log out 
+  // if not , then log in 
   googleLogin=()=>{
     if(this.state.googleLogged)
     {
@@ -67,50 +68,54 @@ export default class App extends Component {
          {!this.state.loggedIn&&<Text style={{fontSize:13,marginBottom: 5}}>Please logg in to see the awesomness</Text> }
         </View>
         <View style={styles.socialButtons}>
+
+        
+        {/* facebook login button  */}
+       
         <LoginButton
-    onLoginFinished={
-      (error, result) => {
-        if (error) {
-         // alert("login has error: " + result.error);
-        } else if (result.isCancelled) {
-      //    alert("login is cancelled.");
-        } else {
+          onLoginFinished={
+          (error, result) => {
+            if (error) {
+            // alert("login has error: " + result.error);
+            } else if (result.isCancelled) {
+          //    alert("login is cancelled.");
+            } else {
 
-          AccessToken.getCurrentAccessToken().then(
-            (data) => {
-              let accessToken = data.accessToken
-             // alert(accessToken.toString())
+            AccessToken.getCurrentAccessToken().then(
+              (data) => {
+                let accessToken = data.accessToken
+              // alert(accessToken.toString())
 
-              const responseInfoCallback = (error, result) => {
-                if (error) {
-                  console.log(error)
-                  alert('Error fetching data: ' + error.toString());
-                } else {
-                  console.log(result)
-                  this.setState({user: result.first_name +" "+ result.last_name,picUrl: result.picture.data.url})
-               //   alert('Success fetching data: ' + result.toString());
-                  this.setState({loggedIn:true})
-                }
-              }
-
-              const infoRequest = new GraphRequest(
-                '/me',
-                {
-                  accessToken: accessToken,
-                  parameters: {
-                    fields: {
-                      string: 'email,name,first_name,middle_name,last_name,picture'
-                    }
+                const responseInfoCallback = (error, result) => {
+                  if (error) {
+                    console.log(error)
+                    alert('Error fetching data: ' + error.toString());
+                  } else {
+                    console.log(result)
+                    this.setState({user: result.first_name +" "+ result.last_name,picUrl: result.picture.data.url})
+                //   alert('Success fetching data: ' + result.toString());
+                    this.setState({loggedIn:true})
                   }
-                },
-                responseInfoCallback
-              );
+                }
 
-              // Start the graph request.
-              new GraphRequestManager().addRequest(infoRequest).start()
+                const infoRequest = new GraphRequest(
+                  '/me',
+                  {
+                    accessToken: accessToken,
+                    parameters: {
+                      fields: {
+                        string: 'email,name,first_name,middle_name,last_name,picture'
+                      }
+                    }
+                  },
+                  responseInfoCallback
+                );
 
-            }
-          )
+                // Start the graph request.
+                new GraphRequestManager().addRequest(infoRequest).start()
+
+              }
+            )
 
         }
       }
